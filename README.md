@@ -54,7 +54,8 @@ make -j<N>
     <os>
       <!-- ... -->
       <kernel>/path/to/bzImage</kernel>
-	  <cmdline>root=/dev/vdXY rootfstype=[fstype] rootflags=[mountflags] rw</cmdline>
+      <cmdline>root=/dev/vdXY rootfstype=[fstype] rootflags=[mountflags] rw</cmdline>
+    </os>
   </domain>
   ```
 * Virt-manager GUI:
