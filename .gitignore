@@ -1,0 +1,6 @@
+# source tarball and build directory
+linux-*/
+linux-*.tar.xz
+
+# kernel image
+vmlinuz.*
