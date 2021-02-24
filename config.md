@@ -2,11 +2,14 @@
 
 ## Base
 
-The configuration is based on `defconfig` and `kvm_guest.config`, with minimal modification to support commonly used hardwares emulated by QEMU.
+The configuration is based on `defconfig` and `kvm_guest.config`, with minimal modification to support commonly used hardware emulated by QEMU.
 
 * disable loadable module and initramfs (the kernel images are managed by host)
 * enable `/proc/config.gz`
 * [x86_64] enable x32 (for Gentoo guest)
+* enable zram (for Fedora guest, zram is enabled by default since 33)
+  * zsmalloc
+  * lzo, lz4, lz4hc, zstd
 
 ## Drivers
 
@@ -37,4 +40,3 @@ The configuration is based on `defconfig` and `kvm_guest.config`, with minimal m
   * EROFS
 * enable all codepages in NLS
   * UTF-8 normalization
-

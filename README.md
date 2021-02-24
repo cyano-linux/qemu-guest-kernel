@@ -1,6 +1,6 @@
 # QEMU Guest Kernel
 
-Linux kernel configurations for QEMU/KVM guest, statically linked for direct kernel boot.
+Linux kernel configurations for QEMU/KVM guests, statically linked for direct kernel boot.
 
 ## Architectures
 
