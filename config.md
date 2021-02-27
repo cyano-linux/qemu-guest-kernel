@@ -23,7 +23,8 @@ The configuration is based on `defconfig` and `kvm_guest.config`, with minimal m
 ## File systems
 
 * advanced partition type
-  * bsdlabel, solaris, windows dynamic (x86)
+  * bsdlabel, solaris, windows dynamic (x86 commons)
+  * mac (still supported by modern macOS)
 * enable all native file systems, with POSIX ACL, security labels, stats, and quota.
   * enable F2FS compression
 * enable FUSE
