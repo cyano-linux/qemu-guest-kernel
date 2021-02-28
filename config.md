@@ -8,6 +8,7 @@ The configuration is based on `defconfig` and `kvm_guest.config`, with minimal m
 * enable `/proc/config.gz`
 * enable apparmor
   * to use apparmor, set either `lsm=apparmor` or `selinux=0 security=apparmor` in kernel command line
+* enable user namespace (for upower)
 * [x86_64] enable x32 (for Gentoo guest)
 * enable zram (for Fedora guest, zram is enabled by default since 33)
   * zsmalloc
