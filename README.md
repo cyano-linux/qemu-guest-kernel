@@ -22,7 +22,7 @@ make -j<N>
 
 ### Cross build
 
-Install LLVM/Clang toolchain, then
+Install Clang/LLVM toolchain, then
 
 ```bash
 wget url://to/linux-5.10.<y>.tar.xz
@@ -63,3 +63,7 @@ make -j<N>
   * In “Boot options”, expand “Direct kernel boot” block,
   * Check “Enable direct kernel boot”,
   * Set “Kernel path” and “Kernel args”, “Initrd path” can be safely omitted.
+
+### AppArmor
+
+The Linux kernel use SELinux as security module by default. To use AppArmor instead, set either `lsm=apparmor` or `selinux=0 security=apparmor` in kernel command line args.
