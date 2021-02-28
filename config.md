@@ -6,6 +6,8 @@ The configuration is based on `defconfig` and `kvm_guest.config`, with minimal m
 
 * disable loadable module and initramfs (the kernel images are managed by host)
 * enable `/proc/config.gz`
+* enable apparmor
+  * to use apparmor, set either `lsm=apparmor` or `selinux=0 security=apparmor` in kernel command line
 * [x86_64] enable x32 (for Gentoo guest)
 * enable zram (for Fedora guest, zram is enabled by default since 33)
   * zsmalloc
