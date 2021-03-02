@@ -5,6 +5,7 @@
 The configuration is based on `defconfig` and `kvm_guest.config`, with minimal modification to support commonly used hardware emulated by QEMU.
 
 * disable loadable module and initramfs (the kernel images are managed by host)
+* enable xz compression
 * enable `/proc/config.gz`
 * enable apparmor
   * to use apparmor, set either `lsm=apparmor` or `selinux=0 security=apparmor` in kernel command line
