@@ -44,3 +44,9 @@ The configuration is based on `defconfig` and `kvm_guest.config`, with minimal m
   * EROFS
 * enable all codepages in NLS
   * UTF-8 normalization
+
+## Incompatable hardware and related features
+
+Some hardware drivers require a firmware blob to work. However, the kernel is statically linked and will not load firmware from filesystem. Thus they do not work and we disable them to save time and space.
+
+* disable wireless and wlan.
