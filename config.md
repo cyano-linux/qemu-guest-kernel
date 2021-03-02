@@ -20,6 +20,7 @@ The configuration is based on `defconfig` and `kvm_guest.config`, with minimal m
 * enable balloon
 * enable virtio-rng
 * enable qxl
+* enable stdvga
 * enable ac97, generic hda
 * enable r8139
 
