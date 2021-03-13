@@ -1,12 +1,12 @@
 # Maintainer: Cyano Hao <c@cyano.cn>
 
 pkgname=qemu-guest-kernel
-pkgdesc="The Linux kernel for QEMU/KVM guests (direct kernel boot)"
+pkgdesc="Linux kernels for QEMU/KVM guests (direct kernel boot)"
 url="https://github.com/guest-kernel/qemu"
 
 _srcmajor=5
 _srcminor=10
-_srcpatch=19
+_srcpatch=23
 _srcbase=$_srcmajor.$_srcminor
 _srcname=linux-$_srcbase
 
@@ -19,6 +19,8 @@ makedepends=(
 	llvm clang
 )
 options=('!strip')
+install=archpkg.install
+
 source=(
 	"https://cdn.kernel.org/pub/linux/kernel/v$_srcmajor.x/linux-$_srcbase".tar.{xz,sign}
 	"https://cdn.kernel.org/pub/linux/kernel/v$_srcmajor.x/patch-$pkgver".xz
@@ -30,9 +32,9 @@ validpgpkeys=(
 )
 sha256sums=('dcdf99e43e98330d925016985bfbc7b83c66d367b714b2de0cbbfcbf83d8ca43'
             'SKIP'
-            'b9214b48dd1ae9dd9a6420469212df209105fe04ce6930d063cb987f283528d3'
-            '6d15f08876062a5954a7fcbf1a05626d0f65ad7d6e4a1d5e367241b77edeaf0d'
-            'b63d1ae870ac820b25c23b4c412962eca18a10fb39d36a164eb0c84b7f6b7b93')
+            '77116c808ed9478300252f32f10332d3380201ab1e553b06d9a363e60e268c3d'
+            'bd023eb255b7678d26503afa15d1a6058266676fe8025ac6ba9e6573e8707884'
+            'e9a8240b8a55f5048229ee87dcccb63a461c0f4496c44e836a1bdf5b0aaffeec')
 
 prepare() {
 	cd $srcdir/$_srcname
@@ -45,37 +47,25 @@ export KBUILD_BUILD_USER=qemu
 # since we are building for “any” architecture, treat all targets as cross build
 export LLVM=1
 
-_build_i686() {
+_build() {
 	cd $srcdir/$_srcname
 	make mrproper
 
-	export ARCH=x86
-	export CROSS_COMPILE=i686-linux-gnu-
+	export CROSS_COMPILE=$_carch-linux-gnu-
 
-	cp $srcdir/config.i686 .config
+	cp $srcdir/config.$_carch .config
 	make olddefconfig
 	make bzImage
 
-	cp arch/x86/boot/bzImage $srcdir/vmlinuz.i686
-}
-
-_build_x86_64() {
-	cd $srcdir/$_srcname
-	make mrproper
-
-	export ARCH=x86
-	export CROSS_COMPILE=x86_64-linux-gnu-
-
-	cp $srcdir/config.x86_64 .config
-	make olddefconfig
-	make bzImage
-
-	cp arch/x86/boot/bzImage $srcdir/vmlinuz.x86_64
+	cp $(make -s image_name) $srcdir/vmlinuz.$_carch
+	# copy updated configuration back to $srcdir
+	# the dest is a symlink, remove the symlink first not to overwrite the original file
+	cp --remove-destination .config $srcdir/config.$_carch
 }
 
 build() {
-	_build_i686
-	_build_x86_64
+	ARCH=x86 _carch=i686 _build
+	ARCH=x86 _carch=x86_64 _build
 }
 
 package() {
