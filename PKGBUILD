@@ -6,7 +6,7 @@ url="https://github.com/guest-kernel/qemu"
 
 _srcmajor=5
 _srcminor=10
-_srcpatch=23
+_srcpatch=25
 _srcbase=$_srcmajor.$_srcminor
 _srcname=linux-$_srcbase
 
@@ -16,7 +16,7 @@ arch=(any)
 license=(GPL2)
 makedepends=(
 	bc kmod libelf pahole cpio perl tar xz
-	llvm clang
+	clang lld llvm
 )
 options=('!strip')
 install=archpkg.install
@@ -32,13 +32,13 @@ validpgpkeys=(
 )
 sha256sums=('dcdf99e43e98330d925016985bfbc7b83c66d367b714b2de0cbbfcbf83d8ca43'
             'SKIP'
-            '77116c808ed9478300252f32f10332d3380201ab1e553b06d9a363e60e268c3d'
-            'bd023eb255b7678d26503afa15d1a6058266676fe8025ac6ba9e6573e8707884'
-            'e9a8240b8a55f5048229ee87dcccb63a461c0f4496c44e836a1bdf5b0aaffeec')
+            '5a3cb361a621aa753790faee038732fffaa0406a5771f545df68a5afa2164a36'
+            '61d2de3e8fbbf97ecbefedcfb53a2913ee94135276d2741adc105d57a56fdbee'
+            'ef2e2b6103e6ba557106b465a9597b83e5f25ecca99cae442800a5b64e0b85e0')
 
 prepare() {
 	cd $srcdir/$_srcname
-	patch -p1 -i $srcdir/patch-$pkgver
+	patch -Np1 -i $srcdir/patch-$pkgver
 }
 
 export KBUILD_BUILD_HOST=guest-kernel
