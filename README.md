@@ -13,10 +13,16 @@ Linux kernel configurations for QEMU/KVM guests, statically linked for direct ke
 ### Native build
 
 ```bash
+ARCH=<see_below>
+
 wget url://to/linux-5.10.<y>.tar.xz
 tar xf linux-5.10.<y>.tar.xz
-cp config.<arch> linux-5.10.<y>/.config
+cp config.$ARCH linux-5.10.<y>/arch/$ARCH/configs/qemu_extra.config
 cd linux-5.10.<y>/
+
+make defconfig
+make kvm_guest.config
+make qemu_extra.config
 make -j<N>
 ```
 
@@ -25,21 +31,25 @@ make -j<N>
 Install Clang/LLVM toolchain, then
 
 ```bash
-wget url://to/linux-5.10.<y>.tar.xz
-tar xf linux-5.10.<y>.tar.xz
-cp config.<arch> linux-5.10.<y>/.config
-cd linux-5.10.<y>/
-
 export ARCH=<see_below>
 export CROSS_COMPILE=<see_below>
 export LLVM=1
+
+wget url://to/linux-5.10.<y>.tar.xz
+tar xf linux-5.10.<y>.tar.xz
+cp config.$ARCH linux-5.10.<y>/arch/$ARCH/configs/qemu_extra.config
+cd linux-5.10.<y>/
+
+make <see_below>defconfig
+make kvm_guest.config
+make qemu_extra.config
 make -j<N>
 ```
 
-| config arch | kernel `ARCH` | `CROSS_COMPILE` |
-| ----------- | ------------- | --------------- |
-| `i686` | `x86` or `i386` | `i686-linux-gnu-` |
-| `x86_64` | `x86` or `x86_64` | `x86_64-linux-gnu-` |
+| Architecture | Kernel `ARCH` | `CROSS_COMPILE` | `defconfig` prefix |
+| ------------ | ------------- | --------------- | ------------------ |
+| `i686` | `x86` | `i686-linux-gnu-` | `i386` |
+| `x86_64` | `x86` | `x86_64-linux-gnu-` | `x86_64` |
 
 ## How to use
 
