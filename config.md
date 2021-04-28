@@ -24,6 +24,7 @@ The configuration is based on `defconfig` and `kvm_guest.config`, with minimal m
 * enable stdvga
 * enable ac97, generic hda
 * enable r8139
+* enable TUN/TAP
 
 ## File systems
 
