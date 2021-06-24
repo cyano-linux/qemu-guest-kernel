@@ -2,7 +2,7 @@
 
 pkgname=qemu-guest-kernel
 pkgver=5.10.45
-pkgrel=1
+pkgrel=2
 pkgdesc="Linux kernels for QEMU/KVM guests (direct kernel boot)"
 url="https://github.com/guest-kernel/qemu"
 arch=(any)
@@ -18,20 +18,24 @@ install=archpkg.install
 _srcname=stable-linux
 source=(
 	$_srcname::"git+https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git?signed#tag=v$pkgver"
-	config.x86
+	config.filesystem
+	config.arch.x86
 )
 validpgpkeys=(
 	"ABAF11C65A2970B130ABE3C479BE3E4300411886"  # Linus Torvalds
 	"647F28654894E3BD457199BE38DBBDC86092693E"  # Greg Kroah-Hartman
 )
 sha256sums=('SKIP'
-            '98a6c9a50221685ff9bd510c1a413caeddcbb6ecc4b2855bc82d3b5ea3979311')
+            '08dacab4a1c9c19b8fc0c919fa15f11296d96d7a0457035eb37c4b4790098f0a'
+            '145a82106497e007df1b17612f2215c2ae0edd8918762a636aad48e7c83cf20f')
 
 prepare() {
 	cd "$srcdir/$_srcname"
+	cp "$srcdir/"config.filesystem kernel/configs/filesystem.config
+
 	for _arch in x86
 	do
-		cp "$srcdir/config.$_arch" arch/$_arch/configs/qemu_extra.config
+		cp "$srcdir/config.arch.$_arch" arch/$_arch/configs/qemu_extra.config
 	done
 }
 
@@ -47,6 +51,7 @@ _build() {
 
 	make ${_def_prefix}defconfig
 	make kvm_guest.config
+	make filesystem.config
 	make qemu_extra.config
 
 	make
@@ -62,6 +67,7 @@ _native_build() {
 
 	make defconfig
 	make kvm_guest.config
+	make filesystem.config
 	make qemu_extra.config
 
 	make
