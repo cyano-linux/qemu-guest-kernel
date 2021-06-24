@@ -17,12 +17,14 @@ ARCH=<see_below>
 
 wget url://to/linux-5.10.<y>.tar.xz
 tar xf linux-5.10.<y>.tar.xz
-cp config.$ARCH linux-5.10.<y>/arch/$ARCH/configs/qemu_extra.config
+cp {filesystem,systemd}.config arch_$ARCH.config linux-5.10.<y>/kernel/configs/
 cd linux-5.10.<y>/
 
 make defconfig
 make kvm_guest.config
-make qemu_extra.config
+make filesystem.config
+make systemd.config
+make arch_$ARCH.config
 make -j<N>
 ```
 
@@ -37,12 +39,14 @@ export LLVM=1
 
 wget url://to/linux-5.10.<y>.tar.xz
 tar xf linux-5.10.<y>.tar.xz
-cp config.$ARCH linux-5.10.<y>/arch/$ARCH/configs/qemu_extra.config
+cp {filesystem,systemd}.config arch_$ARCH.config linux-5.10.<y>/kernel/configs/
 cd linux-5.10.<y>/
 
 make <see_below>defconfig
 make kvm_guest.config
-make qemu_extra.config
+make filesystem.config
+make systemd.config
+make arch_$ARCH.config
 make -j<N>
 ```
 

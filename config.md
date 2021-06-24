@@ -29,7 +29,8 @@ The configuration is based on `defconfig` and `kvm_guest.config`, with minimal m
 ## File systems
 
 * advanced partition type
-  * bsdlabel, solaris, windows dynamic (x86 commons)
+  * msdos, efi, windows dynamic
+  * bsdlabel, solaris (x86 commons)
   * mac (still supported by modern macOS)
 * enable all native file systems, with POSIX ACL, security labels, stats, and quota.
   * enable F2FS compression
@@ -40,6 +41,7 @@ The configuration is based on `defconfig` and `kvm_guest.config`, with minimal m
 * enable FAT utf8 by default
 * enable ExFAT
 * enable kNTFS with write support
+* enable tmpfs with xattrs and POSIX ACL (for systemd)
 * enable common miscs
   * HFS/HFS+
   * SquashFS with XATTR with all available compression algs
