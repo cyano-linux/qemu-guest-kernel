@@ -1,8 +1,8 @@
 # Maintainer: Cyano Hao <c@cyano.cn>
 
 pkgname=qemu-guest-kernel
-pkgver=5.10.45
-pkgrel=3
+pkgver=5.10.46
+pkgrel=1
 pkgdesc="Linux kernels for QEMU/KVM guests (direct kernel boot)"
 url="https://github.com/guest-kernel/qemu"
 arch=(any)
@@ -19,7 +19,7 @@ _srcname=stable-linux
 source=(
 	$_srcname::"git+https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git?signed#tag=v$pkgver"
 	{filesystem,systemd}.config
-	arch.x86.config
+	arch_x86.config
 )
 validpgpkeys=(
 	"ABAF11C65A2970B130ABE3C479BE3E4300411886"  # Linus Torvalds
