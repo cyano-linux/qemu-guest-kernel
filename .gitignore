@@ -9,4 +9,6 @@ vmlinuz.*
 stable-linux
 src/
 pkg/
+PKGBUILD-namcap.log
 qemu-guest-kernel-*.pkg.tar*
+qemu-guest-kernel-*.log
