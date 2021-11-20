@@ -5,7 +5,7 @@
 The configuration is based on `defconfig` and `kvm_guest.config`, with minimal modification to support commonly used hardware emulated by QEMU.
 
 * disable loadable module and initramfs (the kernel images are managed by host)
-* enable xz compression
+* enable zstd compression
 * enable `/proc/config.gz`
 * enable apparmor
   * to use apparmor, set either `lsm=apparmor` or `selinux=0 security=apparmor` in kernel command line
@@ -22,6 +22,7 @@ The configuration is based on `defconfig` and `kvm_guest.config`, with minimal m
 * enable virtio-rng
 * enable qxl
 * enable stdvga
+* enable cirrus
 * enable ac97, generic hda
 * enable r8139
 * enable TUN/TAP
@@ -40,7 +41,7 @@ The configuration is based on `defconfig` and `kvm_guest.config`, with minimal m
 * enable UDF
 * enable FAT utf8 by default
 * enable ExFAT
-* enable kNTFS with write support
+* enable NTFS3
 * enable tmpfs with xattrs and POSIX ACL (for systemd)
 * enable common miscs
   * HFS/HFS+

@@ -15,10 +15,10 @@ Linux kernel configurations for QEMU/KVM guests, statically linked for direct ke
 ```bash
 ARCH=<see_below>
 
-wget url://to/linux-5.10.<y>.tar.xz
-tar xf linux-5.10.<y>.tar.xz
-cp {filesystem,systemd}.config arch_$ARCH.config linux-5.10.<y>/kernel/configs/
-cd linux-5.10.<y>/
+wget url://to/linux-5.15.<y>.tar.xz
+tar xf linux-5.15.<y>.tar.xz
+cp {filesystem,systemd}.config arch_$ARCH.config linux-5.15.<y>/kernel/configs/
+cd linux-5.15.<y>/
 
 make defconfig
 make kvm_guest.config
@@ -37,10 +37,10 @@ export ARCH=<see_below>
 export CROSS_COMPILE=<see_below>
 export LLVM=1
 
-wget url://to/linux-5.10.<y>.tar.xz
-tar xf linux-5.10.<y>.tar.xz
-cp {filesystem,systemd}.config arch_$ARCH.config linux-5.10.<y>/kernel/configs/
-cd linux-5.10.<y>/
+wget url://to/linux-5.15.<y>.tar.xz
+tar xf linux-5.15.<y>.tar.xz
+cp {filesystem,systemd}.config arch_$ARCH.config linux-5.15.<y>/kernel/configs/
+cd linux-5.15.<y>/
 
 make <see_below>defconfig
 make kvm_guest.config
