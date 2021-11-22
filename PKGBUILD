@@ -29,7 +29,7 @@ validpgpkeys=(
 )
 sha256sums=('SKIP'
             '9a917bb710be091e5b1d05185f009b6eb67b4b668389da185e56909da2b10d06'
-            '910b7965db9777794b923ba36c83b682593c55775a7cc0a91fe28c2b7a43ade1'
+            '0ccbd0d29149c3752303aea276eea713cd1cb0687ea0239bdbaa20732b31e868'
             'c40d2fd202aea75c78a4b39c365ccc687bf0f5a4df3bf2ee31fd4e162ef635d3')
 
 prepare() {
