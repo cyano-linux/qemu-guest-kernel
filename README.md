@@ -52,8 +52,8 @@ make -j<N>
 
 | Architecture | Kernel `ARCH` | `CROSS_COMPILE` | `defconfig` prefix |
 | ------------ | ------------- | --------------- | ------------------ |
-| `i686` | `x86` | `i686-linux-gnu-` | `i386` |
-| `x86_64` | `x86` | `x86_64-linux-gnu-` | `x86_64` |
+| `i686` | `x86` | `i686-linux-gnu-` | `i386_` |
+| `x86_64` | `x86` | `x86_64-linux-gnu-` | `x86_64_` |
 
 ## How to use
 

@@ -26,6 +26,7 @@ The configuration is based on `defconfig` and `kvm_guest.config`, with minimal m
 * enable ac97, generic hda
 * enable r8139
 * enable TUN/TAP
+* enable user level driver (uinput, for spice-vdagent)
 
 ## File systems
 
