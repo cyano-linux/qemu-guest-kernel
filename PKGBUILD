@@ -1,7 +1,7 @@
 # Maintainer: Cyano Hao <c@cyano.cn>
 
 pkgname=qemu-guest-kernel
-pkgver=5.15.53
+pkgver=6.6.32
 pkgrel=1
 pkgdesc="Linux kernels for QEMU/KVM guests (direct kernel boot)"
 url="https://github.com/cyano-linux/qemu-guest-kernel"
@@ -27,18 +27,18 @@ validpgpkeys=(
 	"E27E5D8A3403A2EF66873BBCDEA66FF797772CDC"  # Sasha Levin
 	"AC2B29BD34A6AFDDB3F68F35E7BFC8EC95861109"  # Ben Hutchings
 )
-sha256sums=('SKIP'
+sha256sums=('5c55e0c1935f65722d79a2e528e61bfedc4bebfe1212f0edad8e8e5807b8c6a3'
             '9a917bb710be091e5b1d05185f009b6eb67b4b668389da185e56909da2b10d06'
-            '0ccbd0d29149c3752303aea276eea713cd1cb0687ea0239bdbaa20732b31e868'
-            '45cf6ec7c89fd3649c495cd011ebc58a58f76df08950044475cf2c96cde9aac8')
+            'a3f9fe024e6deee946282f0512065d4baf20d0ef6a7392ce7b531e4a324166b8'
+            '3c307c90fcfd96e853752b7e2cd7ed103408410c07e348a778eb84123a77a68d')
 
 prepare() {
 	cd "$srcdir/$_srcname"
-	cp "$srcdir/"{filesystem,systemd}.config kernel/configs/
+	ln -sf "$srcdir"/{filesystem,systemd}.config kernel/configs/
 
 	for _arch in x86
 	do
-		cp "$srcdir/arch_$_arch.config" arch/$_arch/configs/arch_specific.config
+		ln -sf "$srcdir/arch_$_arch.config" arch/$_arch/configs/arch_specific.config
 	done
 }
 
@@ -71,4 +71,5 @@ package() {
 	cd "$srcdir"
 	local _target="$pkgdir/usr/share/qemu/kernel"
 	install -Dm644 -t "$_target" "$srcdir"/vmlinuz.{i686,x86_64}
+	install -Dm644 -t "$_target" "$srcdir"/vmlinuz.x86_64
 }
